@@ -36,6 +36,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'i18n_generators'
 
+gem 'devise'
+
+gem 'pundit'
+
+gem 'airbrake', '~> 7.2'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
