@@ -42,6 +42,8 @@ gem 'pundit'
 
 gem 'airbrake', '~> 7.2'
 
+gem 'config'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
