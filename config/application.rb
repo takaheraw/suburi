@@ -28,6 +28,7 @@ module Suburi
     # the framework and any gems in your application.
 
     config.i18n.default_locale            = :ja
+    config.i18n.available_locales         = [:ja, :en]
     config.time_zone                      = 'Tokyo'
     config.active_record.default_timezone = :local
 
