@@ -1,0 +1,10 @@
+:concurrency: 5
+:queues:
+  - default
+  - push
+  - pull
+  - mailers
+:schedule:
+  hello_scheduler:
+    cron: '1 */1 * * *'
+    class: Scheduler::HelloScheduler

@@ -47,7 +47,11 @@ gem 'config'
 gem 'redis-rails'
 gem 'redis-namespace'
 gem 'redis'
-gem "hiredis"
+gem 'hiredis'
+
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'sidekiq-bulk'
 
 group :development, :test do
   gem 'pry-byebug'
