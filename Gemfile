@@ -44,6 +44,8 @@ gem 'airbrake', '~> 7.2'
 
 gem 'config'
 
+gem 'redis-rails'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

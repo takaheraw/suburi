@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
 
-#  unless Rails.env.development?
+  unless Rails.env.development?
     rescue_from StandardError,                              with: :render_500
     rescue_from ActionController::InvalidAuthenticityToken, with: :render_422
     rescue_from ActionController::RoutingError,             with: :render_404
     rescue_from ActiveRecord::RecordNotFound,               with: :render_404
     rescue_from ActiveRecord::RecordInvalid,                with: :render_400
     rescue_from Pundit::NotAuthorizedError,                 with: :render_401
-#  end
+  end
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
