@@ -55,6 +55,8 @@ gem 'sidekiq-bulk'
 
 gem 'webpacker'
 
+gem 'active_decorator'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
