@@ -53,6 +53,8 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-bulk'
 
+gem 'webpacker'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
