@@ -5,7 +5,6 @@ class Api::V1::UsersController < Api::BaseController
   respond_to :json
 
   def show
-binding.pry
     render json: @user
   end
 
