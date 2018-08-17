@@ -7,7 +7,6 @@ gem 'active_decorator'
 gem 'active_model_serializers'
 gem 'airbrake', '~> 7.2'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'doorkeeper'
 gem 'devise'
