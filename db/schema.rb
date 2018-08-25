@@ -53,23 +53,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
     t.boolean "confidential", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
     t.boolean "superapp", default: false, null: false
-    t.index ["owner_id"], name: "index_oauth_applications_on_owner_id"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
-  create_table "session_activations", force: :cascade do |t|
-    t.string "session_id", null: false
-    t.integer "user_id", null: false
-    t.string "user_agent", default: "", null: false
-    t.string "string", default: "", null: false
-    t.inet "ip"
-    t.integer "access_token_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_session_activations_on_session_id", unique: true
-    t.index ["user_id"], name: "index_session_activations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,7 +83,4 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", on_delete: :cascade
-  add_foreign_key "oauth_applications", "users", column: "owner_id", on_delete: :cascade
-  add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
-  add_foreign_key "session_activations", "users", on_delete: :cascade
 end
