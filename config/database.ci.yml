@@ -1,9 +1,8 @@
 test:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: 127.0.0.1
   username: root
   password:
-  socket: /var/run/mysqld/mysqld.sock
   database: suburi_test
