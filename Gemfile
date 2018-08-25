@@ -15,6 +15,7 @@ gem 'faraday_middleware'
 gem 'hiredis'
 gem 'i18n_generators'
 gem 'jbuilder', '~> 2.5'
+gem 'lograge'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'pundit'
@@ -29,6 +30,7 @@ gem 'sidekiq-scheduler'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
+gem 'woothee'
 
 group :development, :test do
   gem 'brakeman', require: false

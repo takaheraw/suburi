@@ -14,6 +14,21 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
   end
 
+  def append_info_to_payload(payload)
+    super
+    payload[:host]          = request.host
+    payload[:ip]            = request.remote_ip
+    payload[:referer]       = request.referer
+    payload[:user_id]       = current_user.try(:id)
+    ua                      = Woothee.parse(request.user_agent)
+    payload[:ua_name]       = ua[:name]
+    payload[:ua_category]   = ua[:category].to_s
+    payload[:ua_os]         = ua[:os]
+    payload[:ua_os_version] = ua[:os_version]
+    payload[:ua_version]    = ua[:version]
+    payload[:ua_vendor]     = ua[:vendor]
+  end
+
   protected
 
   def render_400(e)
