@@ -1,0 +1,67 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    working_directory: ~/circleci-suburi
+
+    branches:
+      only:
+        - develop
+
+    docker:
+      - image: circleci/ruby:2.5.0-node
+      - image: circleci/mysql:5.7-ram
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true --innodb-file-format=Barracuda
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+          MYSQL_ROOT_PASSWORD: ''
+      - image: redis
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - bundle-cache-{{ checksum "Gemfile.lock" }}
+            - bundle-cache-
+
+      - run:
+          name: Bundle Install
+          command: bundle install --path vendor/bundle
+
+      - save_cache:
+          key: bundle-cache-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - save_cache:
+          key: yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+
+      - run:
+          name: create test DB
+          environment:
+            RAILS_ENV: test
+            DATABASE_USER: root
+          command: |
+            mv config/database.ci.yml config/database.yml
+            bin/rails db:create
+            bin/rails db:migrate
+      - run:
+          name: run test
+          command: bundle exec rspec
