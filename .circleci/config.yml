@@ -6,7 +6,7 @@ jobs:
 
     branches:
       only:
-        - develop
+        - master
 
     docker:
       - image: circleci/ruby:2.5.0-node
