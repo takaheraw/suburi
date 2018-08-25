@@ -9,7 +9,7 @@ jobs:
         - master
 
     docker:
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.5.1-node
       - image: circleci/mysql:5.7-ram
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true --innodb-file-format=Barracuda
         environment:
