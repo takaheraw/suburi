@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_09_100236) do
+ActiveRecord::Schema.define(version: 2018_09_16_070230) do
+
+  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "username", default: "", null: false
+    t.text "note"
+    t.string "display_name", default: "", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string "header_file_name"
+    t.string "header_content_type"
+    t.integer "header_file_size"
+    t.datetime "header_updated_at"
+    t.boolean "silenced", default: false, null: false
+    t.boolean "suspended", default: false, null: false
+    t.boolean "locked", default: false, null: false
+    t.integer "statuses_count", default: 0, null: false
+    t.integer "followers_count", default: 0, null: false
+    t.integer "following_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "oauth_access_grants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
@@ -56,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
+    t.bigint "account_id", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -72,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
+    t.index ["account_id"], name: "fk_rails_61ac11da2b"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -80,4 +104,5 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", on_delete: :cascade
+  add_foreign_key "users", "accounts", on_delete: :cascade
 end

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  belongs_to :account, inverse_of: :user
+
   has_many :oauth_access_tokens, class_name: 'Doorkeeper::AccessToken', foreign_key: :resource_owner_id
 
   scope :recent, -> { order(id: :desc) }
@@ -13,6 +15,17 @@ class User < ApplicationRecord
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
+
+  def confirmed?
+    confirmed_at.present?
+  end
+
+  def disable!
+    update!(
+      last_sign_in_at: current_sign_in_at,
+      current_sign_in_at: nil
+    )
+  end
 
   def activate_access_token(request)
     superapp = Doorkeeper::Application.find_by(superapp: true)
