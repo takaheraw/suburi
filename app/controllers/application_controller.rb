@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     respond_with_error(e, 401)
   end
 
+  def render_403(e)
+    respond_with_error(e, 403)
+  end
+
   def render_404(e)
     respond_with_error(e, 404)
   end
@@ -69,6 +73,12 @@ class ApplicationController < ActionController::Base
     notice = Airbrake.build_notice(e)
     notice.stash[:rack_request] = request
     Airbrake.notify(notice)
+  end
+
+  private
+
+  def require_admin!
+    raise Pundit::NotAuthorizedError unless current_user&.admin?
   end
 
 end
