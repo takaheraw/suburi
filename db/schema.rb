@@ -12,11 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2018_08_09_100236) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer "resource_owner_id", null: false
+  create_table "oauth_access_grants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "resource_owner_id", null: false
     t.bigint "application_id", null: false
     t.string "token", null: false
     t.integer "expires_in", null: false
@@ -28,8 +25,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
-  create_table "oauth_access_tokens", force: :cascade do |t|
-    t.integer "resource_owner_id"
+  create_table "oauth_access_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "resource_owner_id"
     t.bigint "application_id"
     t.string "token", null: false
     t.string "refresh_token"
@@ -44,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", force: :cascade do |t|
+  create_table "oauth_applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
@@ -57,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -66,8 +63,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_100236) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
