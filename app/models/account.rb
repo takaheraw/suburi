@@ -1,3 +1,29 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id                  :bigint(8)        not null, primary key
+#  username            :string(255)      default(""), not null
+#  note                :text(65535)
+#  display_name        :string(255)      default(""), not null
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  header_file_name    :string(255)
+#  header_content_type :string(255)
+#  header_file_size    :integer
+#  header_updated_at   :datetime
+#  silenced            :boolean          default(FALSE), not null
+#  suspended           :boolean          default(FALSE), not null
+#  locked              :boolean          default(FALSE), not null
+#  statuses_count      :integer          default(0), not null
+#  followers_count     :integer          default(0), not null
+#  following_count     :integer          default(0), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
 class Account < ApplicationRecord
 
   has_one :user, inverse_of: :account
