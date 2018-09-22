@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout' }
 
+  namespace :setting do
+    resource :profile, only: [:show, :update]
+  end
+
   namespace :api do
     namespace :v1 do
       resources :users, only: [:show]

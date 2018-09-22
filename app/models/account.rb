@@ -25,6 +25,8 @@
 #
 
 class Account < ApplicationRecord
+  include AccountAvatar
+  include AccountHeader
 
   has_one :user, inverse_of: :account
 

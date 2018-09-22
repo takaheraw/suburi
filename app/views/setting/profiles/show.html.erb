@@ -1,0 +1,7 @@
+<%= simple_form_for @account, url: setting_profile_path, html: { method: :put } do |f| %>
+  <%= f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name'), hint: t('simple_form.hints.defaults.display_name', count: 30 - @account.display_name.size).html_safe %>
+  <%= f.input :note, placeholder: t('simple_form.labels.defaults.note'), hint: t('simple_form.hints.defaults.note', count: 160 - (@account.note.blank? ? 0 : @account.note.size)).html_safe %>
+  <%= f.input :avatar, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT)) %>
+  <%= f.input :header, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT)) %>
+  <%= f.button :button, t('generic.save_changes'), type: :submit %>
+<% end %>
