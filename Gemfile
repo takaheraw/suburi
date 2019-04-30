@@ -3,10 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'airbrake', '~> 9.1'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.5.2'
 gem 'puma', '~> 3.11'
+gem 'pundit'
 gem 'rails', '~> 6.0.0.rc1'
 gem 'sidekiq'
 gem 'sidekiq-bulk'
