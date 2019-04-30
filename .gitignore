@@ -13,12 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded files in development
+# Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
-
-/node_modules
-/yarn-error.log
 
 /public/assets
 .byebug_history
@@ -27,19 +24,3 @@
 /config/master.key
 
 /vendor/bundle
-
-.env
-
-.DS_Store
-
-config/settings.local.yml
-config/settings/*.local.yml
-config/environments/*.local.yml
-
-public/system
-public/assets
-public/packs
-public/packs-test
-/node_modules
-yarn-debug.log*
-.yarn-integrity

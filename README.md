@@ -1,5 +1,24 @@
-# 素振り
+# README
 
-`rails new` したあとの初期設定まとめです。
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-![素振り](https://i.gyazo.com/8e005102c44e26dbd4ac6af06754f849.png)
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

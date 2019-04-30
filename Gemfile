@@ -1,66 +1,22 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.3'
 
-gem 'active_decorator'
-gem 'active_model_serializers'
-gem 'airbrake', '~> 7.2'
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'config'
-gem 'doorkeeper'
-gem 'devise'
-gem 'faraday'
-gem 'faraday_middleware'
-gem 'fastimage'
-gem 'hiredis'
-gem 'i18n_generators'
-gem 'jbuilder', '~> 2.5'
-gem 'lograge'
-gem 'mysql2'
-gem 'paperclip'
-gem 'paperclip-av-transcoder'
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'rails', '~> 6.0.0.rc1'
+gem 'mysql2', '>= 0.5.2'
 gem 'puma', '~> 3.11'
-gem 'pundit'
-gem 'rails', '~> 5.2.1'
-gem 'redis'
-gem 'redis-namespace'
-gem 'redis-rails'
-gem 'sass-rails', '~> 5.0'
-gem 'sidekiq'
-gem 'sidekiq-bulk'
-gem 'sidekiq-scheduler'
-gem 'simple-navigation'
-gem 'simple_form'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'uglifier', '>= 1.3.0'
-gem 'webpacker'
-gem 'woothee'
+gem 'webpacker', '~> 4.0'
+gem 'jbuilder', '~> 2.5'
+gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
-  gem 'brakeman', require: false
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails'
 end
 
 group :development do
-  gem 'annotate'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'bullet'
-  gem 'hirb'
-  gem 'letter_opener_web'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'rubocop', '~> 0.58.2', require: false
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'rubocop'
 end
 
-group :test do
-  gem 'faker'
-end
+
