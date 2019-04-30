@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'airbrake', '~> 9.1'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'config'
 gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.5.2'
