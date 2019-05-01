@@ -1,7 +1,7 @@
 redis_connection = Redis.new(
-  host: Settings.redis.host,
-  port: Settings.redis.port,
-  db: Settings.redis.db,
+  host:   Settings.redis.host,
+  port:   Settings.redis.port,
+  db:     Settings.redis.db,
   driver: :hiredis
 )
 

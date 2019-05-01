@@ -1,3 +1,8 @@
 errbit:
-  host: http://127.0.0.1:8080
+  host:    http://127.0.0.1:8080
   api_key: 1234567890
+redis:
+  host:      localhost
+  port:      6379
+  db:        0
+  namespace: <%= [Rails.application.class.parent_name, Rails.env].join(':') %>
