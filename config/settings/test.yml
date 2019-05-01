@@ -4,5 +4,5 @@ errbit:
 redis:
   host:      localhost
   port:      6379
-  db:        0
+  db:        2
   namespace: <%= [Rails.application.class.parent_name, Rails.env].join(':') %>
