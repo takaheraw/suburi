@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
     respond_with_error(e, 500)
   end
 
-  def respond_with_error(e, code)
+  def respond_with_error(_e, code)
     respond_to do |format|
       format.any  { head code }
       format.html do
@@ -55,5 +55,4 @@ class ApplicationController < ActionController::Base
     notice.stash[:rack_request] = request
     Airbrake.notify(notice)
   end
-
 end

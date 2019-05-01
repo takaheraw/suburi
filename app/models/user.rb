@@ -10,5 +10,5 @@ class User < ApplicationRecord
          :lockable,
          :timeoutable,
          :trackable
-         #:omniauthable
+  #:omniauthable
 end

@@ -7,11 +7,14 @@ gem 'airbrake', '~> 9.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'config'
 gem 'devise'
+gem 'hiredis'
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.5.2'
 gem 'puma', '~> 3.11'
 gem 'pundit'
 gem 'rails', '~> 6.0.0.rc1'
+gem 'redis'
+gem 'redis-namespace'
 gem 'redis-rails'
 gem 'sidekiq'
 gem 'sidekiq-bulk'
@@ -20,7 +23,6 @@ gem 'sidekiq-history'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'webpacker', '~> 4.0'
-
 
 group :development, :test do
   gem 'factory_bot_rails'
