@@ -61,7 +61,7 @@ jobs:
           command: |
             mv config/database.ci.yml config/database.yml
             bin/rails db:create
-            bin/rails db:migrate
+            bin/rails db:setup
       - run:
           name: run test
-          command: bundle exec rspec
+          command: bundle exec rspec --exclude-pattern "spec/integration/**/*_spec.rb"

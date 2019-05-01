@@ -5,13 +5,13 @@ class Api::V1::UsersController < Api::BaseController
   respond_to :json
 
   def show
-    render json: @user, serializer: REST::UserSerializer
+    render json: @user, serializer: UserSerializer
   end
 
   private
 
   def set_user
-    @user = User.find(id: params[:id])
+    @user = User.find(params[:id])
   end
 
 end

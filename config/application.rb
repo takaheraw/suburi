@@ -19,6 +19,8 @@ require "action_view/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative '../app/lib/exceptions'
+
 module Suburi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -30,7 +32,7 @@ module Suburi
     # the framework and any gems in your application.
 
     config.i18n.default_locale            = :ja
-    config.i18n.available_locales         = %i[ja en]
+    config.i18n.available_locales         = [:ja, :en]
     config.time_zone                      = 'Tokyo'
     config.active_record.default_timezone = :local
 

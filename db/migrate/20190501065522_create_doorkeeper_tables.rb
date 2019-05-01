@@ -12,8 +12,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[6.0]
       t.string  :scopes,       null: false, default: ''
       t.boolean :confidential, null: false, default: true
 
-      t.boolean :superapp, null: false, default: false
-
+      t.boolean :superapp,     null: false, default: false
       t.timestamps             null: false
     end
 
