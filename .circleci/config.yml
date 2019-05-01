@@ -21,6 +21,11 @@ jobs:
 
       - checkout
 
+      - run:
+          name: Install system dependencies
+          command: |
+            gem install bundler -v 2.0.1
+
       - restore_cache:
           keys:
             - bundle-cache-{{ checksum "Gemfile.lock" }}
