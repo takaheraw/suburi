@@ -10,6 +10,22 @@ class ApplicationController < ActionController::Base
     rescue_from Pundit::NotAuthorizedError,                 with: :render_401
   end
 
+  def append_info_to_payload(payload)
+    super
+    payload[:host]          = request.host
+    payload[:ip]            = request.remote_ip
+    payload[:referer]       = request.referer
+    payload[:user_id]       = current_user.try(:id)
+    payload[:req_params]    = request.request_parameters
+    ua                      = Woothee.parse(request.user_agent)
+    payload[:ua_name]       = ua[:name]
+    payload[:ua_category]   = ua[:category].to_s
+    payload[:ua_os]         = ua[:os]
+    payload[:ua_os_version] = ua[:os_version]
+    payload[:ua_version]    = ua[:version]
+    payload[:ua_vendor]     = ua[:vendor]
+  end
+
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
   end
