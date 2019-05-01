@@ -12,6 +12,7 @@ gem 'mysql2', '>= 0.5.2'
 gem 'puma', '~> 3.11'
 gem 'pundit'
 gem 'rails', '~> 6.0.0.rc1'
+gem 'redis-rails'
 gem 'sidekiq'
 gem 'sidekiq-bulk'
 gem 'sidekiq-failures'
@@ -19,6 +20,7 @@ gem 'sidekiq-history'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'webpacker', '~> 4.0'
+
 
 group :development, :test do
   gem 'factory_bot_rails'
