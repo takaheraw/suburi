@@ -38,6 +38,11 @@ GEM
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
     active_decorator (1.2.0)
+    active_model_serializers (0.10.9)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (6.0.0.rc1)
       activesupport (= 6.0.0.rc1)
       globalid (>= 0.3.6)
@@ -86,6 +91,8 @@ GEM
       bundler (>= 1.2.0, < 3)
       thor (~> 0.18)
     byebug (11.0.1)
+    case_transform (0.2)
+      activesupport
     choice (0.2.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
@@ -115,6 +122,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    doorkeeper (5.1.0)
+      railties (>= 5)
     dotenv (0.7.0)
     dry-configurable (0.8.2)
       concurrent-ruby (~> 1.0)
@@ -179,6 +188,7 @@ GEM
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     json_schema (0.20.4)
+    jsonapi-renderer (0.2.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.7.0)
@@ -393,6 +403,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_decorator
+  active_model_serializers
   airbrake (~> 9.1)
   annotate
   better_errors
@@ -405,6 +416,7 @@ DEPENDENCIES
   database_cleaner
   derailed_benchmarks
   devise
+  doorkeeper
   factory_bot_rails
   faker
   foreman

@@ -4,10 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'active_decorator'
+gem 'active_model_serializers'
 gem 'airbrake', '~> 9.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'config'
 gem 'devise'
+gem 'doorkeeper'
 gem 'hiredis'
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.5.2'

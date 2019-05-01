@@ -4,6 +4,8 @@ require 'sidekiq-scheduler/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
 
+  use_doorkeeper
+
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
 
   root 'home#index'
