@@ -68,8 +68,6 @@ jobs:
             bin/rails db:create
             bin/rails db:setup
 
-      - run: mkdir -p $CIRCLE_ARTIFACTS
-
       - run:
           name: run test
           command: bundle exec rspec --exclude-pattern "spec/integration/**/*_spec.rb"
