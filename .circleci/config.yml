@@ -54,7 +54,9 @@ jobs:
           paths:
             - ~/.cache/yarn
 
-      - run: bundle exec brakeman -z
+      - run:
+          name: A static analysis security
+          command: bundle exec brakeman -z
 
       - run:
           name: Wait for DB
