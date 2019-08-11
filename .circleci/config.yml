@@ -72,6 +72,9 @@ jobs:
           name: run test
           command: bundle exec rspec --exclude-pattern "spec/integration/**/*_spec.rb"
 
+      - run:
+          command: |
+            cp coverage /tmp
+
       - store_artifacts:
-          path: ~/circleci-suburi/coverage
-          destination: /tmp/coverage
+          path: /tmp/coverage
