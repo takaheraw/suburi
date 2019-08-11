@@ -6,33 +6,36 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/public/assets
+/public/packs
+/public/packs-test
+/node_modules
 coverage
 
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
 
-/public/assets
-.byebug_history
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/vendor/bundle
-
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
+# Ignore yarn log files
+yarn-error.log
 yarn-debug.log*
 .yarn-integrity
 
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+# Ignore Apple files
+.DS_Store
+
+.byebug_history

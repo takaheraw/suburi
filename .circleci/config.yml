@@ -78,3 +78,17 @@ jobs:
       - store_test_results:
           path: ~/rspec
 
+      - run:
+          name: Stash Coverage Results
+          command: |
+            mkdir coverage_results
+            cp -R coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - coverage_results
+
+      - store_artifacts:
+          path: ~/rspec
+          destination: rspec

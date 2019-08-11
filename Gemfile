@@ -32,6 +32,7 @@ gem 'webpacker', '~> 4.0'
 gem 'woothee'
 
 group :development, :test do
+  gem 'brakeman', require: false
   gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -42,7 +43,6 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'brakeman', require: false
   gem 'bullet'
   gem 'bundler-audit', require: false
   gem 'derailed_benchmarks'
