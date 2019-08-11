@@ -8,9 +8,6 @@ jobs:
       only:
         - master
 
-    environment:
-      CIRCLE_ARTIFACTS: ~/circleci-suburi/
-
     docker:
       - image: circleci/ruby:2.6.3-node
       - image: circleci/mysql:8.0.12
