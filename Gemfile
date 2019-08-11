@@ -62,6 +62,7 @@ group :test do
   gem 'json_schema'
   gem 'oas_parser'
   gem 'rails-controller-testing'
+  gem 'rspec_junit_formatter'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
