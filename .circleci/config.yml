@@ -9,7 +9,7 @@ jobs:
         - master
 
     environment:
-      CIRCLE_ARTIFACTS: ~/circleci-suburi/coverage
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
 
     docker:
       - image: circleci/ruby:2.6.3-node
@@ -70,9 +70,12 @@ jobs:
             mv config/database.ci.yml config/database.yml
             bin/rails db:create
             bin/rails db:setup
+
+      - run: mkdir -p $CIRCLE_ARTIFACTS
+
       - run:
           name: run test
           command: bundle exec rspec --exclude-pattern "spec/integration/**/*_spec.rb"
+
       - store_artifacts:
-          path: ~/circleci-suburi/coverage
-          destination: coverage
+          path: /tmp/circleci-artifacts
