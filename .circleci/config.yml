@@ -74,3 +74,4 @@ jobs:
 
       - store_artifacts:
           path: ~/circleci-suburi/coverage
+          destination: /tmp/coverage
