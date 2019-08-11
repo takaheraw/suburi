@@ -26,3 +26,9 @@ update_configs:
 
     # Enable. Only lockfile updates (ignore updates that require Gemfile changes)
     version_requirement_updates: "off"
+
+  - package_manager: "javascript"
+
+    directory: "/"
+
+    update_schedule: "daily"
