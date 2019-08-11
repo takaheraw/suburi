@@ -63,6 +63,7 @@ group :test do
   gem 'oas_parser'
   gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
+  gem 'simplecov', require: false
   gem 'shoulda-matchers'
   gem 'webmock'
 end

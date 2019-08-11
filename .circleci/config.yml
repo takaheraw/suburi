@@ -70,3 +70,5 @@ jobs:
       - run:
           name: run test
           command: bundle exec rspec --exclude-pattern "spec/integration/**/*_spec.rb"
+      - store_artifacts:
+          path: coverage
