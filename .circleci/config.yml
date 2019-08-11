@@ -9,7 +9,7 @@ jobs:
         - master
 
     environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_ARTIFACTS: ~/circleci-suburi/
 
     docker:
       - image: circleci/ruby:2.6.3-node
@@ -78,4 +78,4 @@ jobs:
           command: bundle exec rspec --exclude-pattern "spec/integration/**/*_spec.rb"
 
       - store_artifacts:
-          path: /tmp/circleci-artifacts
+          path: ~/circleci-suburi/coverage
