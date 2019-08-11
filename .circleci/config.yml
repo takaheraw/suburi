@@ -74,7 +74,7 @@ jobs:
 
       - run:
           command: |
-            cp coverage /tmp
+            cp ~/circleci-suburi/coverage /tmp
 
       - store_artifacts:
           path: /tmp/coverage
