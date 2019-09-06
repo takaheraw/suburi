@@ -181,6 +181,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hansi (0.2.0)
+    hash-deep-merge (0.1.1)
     hashdiff (1.0.0)
     heapy (0.1.4)
     hirb (0.7.3)
@@ -237,11 +238,12 @@ GEM
     nio4r (2.5.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    oas_parser (0.19.0)
+    oas_parser (0.20.0)
       activesupport (>= 4.0.0)
       addressable (~> 2.3)
       builder (~> 3.2.3)
       deep_merge (~> 1.2.1)
+      hash-deep-merge
       mustermann-contrib (~> 1.0.3s)
       nokogiri
     oauth2 (1.4.1)
