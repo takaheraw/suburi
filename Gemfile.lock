@@ -234,7 +234,7 @@ GEM
       mustermann (= 1.0.3)
     mysql2 (0.5.3)
     nio4r (2.5.2)
-    nokogiri (1.10.5)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     oas_parser (0.22.4)
       activesupport (>= 4.0.0)
