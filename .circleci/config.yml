@@ -25,6 +25,7 @@ jobs:
           name: Install tbls
           command: |
             curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
+            tbls -h
 
       - run:
           name: Install system dependencies
