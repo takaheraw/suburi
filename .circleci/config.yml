@@ -21,7 +21,6 @@ jobs:
 
       - checkout
 
-
       - run:
           name: Install system dependencies
           command: |

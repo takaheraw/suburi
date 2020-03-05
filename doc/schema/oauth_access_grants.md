@@ -18,8 +18,8 @@ CREATE TABLE `oauth_access_grants` (
   `scopes` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_access_grants_on_token` (`token`),
-  KEY `index_oauth_access_grants_on_resource_owner_id` (`resource_owner_id`),
   KEY `index_oauth_access_grants_on_application_id` (`application_id`),
+  KEY `index_oauth_access_grants_on_resource_owner_id` (`resource_owner_id`),
   CONSTRAINT `fk_rails_330c32d8d9` FOREIGN KEY (`resource_owner_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_rails_b4b53e07b8` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

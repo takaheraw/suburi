@@ -20,8 +20,8 @@ CREATE TABLE `oauth_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_access_tokens_on_token` (`token`),
   UNIQUE KEY `index_oauth_access_tokens_on_refresh_token` (`refresh_token`),
-  KEY `index_oauth_access_tokens_on_resource_owner_id` (`resource_owner_id`),
   KEY `index_oauth_access_tokens_on_application_id` (`application_id`),
+  KEY `index_oauth_access_tokens_on_resource_owner_id` (`resource_owner_id`),
   CONSTRAINT `fk_rails_732cb83ab7` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`),
   CONSTRAINT `fk_rails_ee63f25419` FOREIGN KEY (`resource_owner_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

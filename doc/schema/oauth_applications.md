@@ -19,7 +19,7 @@ CREATE TABLE `oauth_applications` (
   `updated_at` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
 
 </details>
