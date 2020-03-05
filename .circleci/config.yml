@@ -76,7 +76,7 @@ jobs:
           name: Install tbls
           command: |
             curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
-            tbls diff my://root@127.0.0.1:3306/suburi_test doc/schema
+            tbls diff my://root@127.0.0.1:3306/suburi_development doc/schema
 
       - run: mkdir ~/rspec
 
