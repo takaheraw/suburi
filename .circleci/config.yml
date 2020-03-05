@@ -21,11 +21,6 @@ jobs:
 
       - checkout
 
-      - run:
-          name: Install tbls
-          command: |
-            curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
-            tbls -h
 
       - run:
           name: Install system dependencies
@@ -77,6 +72,13 @@ jobs:
             mv config/database.ci.yml config/database.yml
             bin/rails db:create
             bin/rails db:setup
+
+      - run:
+          name: Install tbls
+          command: |
+            curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
+            tbls -h
+            tbls diff my://root@127.0.0.1:3306/suburi_test doc/schema
 
       - run: mkdir ~/rspec
 
