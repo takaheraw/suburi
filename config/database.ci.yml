@@ -6,4 +6,4 @@ test:
   username: root
   password:
   socket: /var/run/mysqld/mysqld.sock
-  database: suburi_test
+  database: suburi_development
