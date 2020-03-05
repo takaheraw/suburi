@@ -22,6 +22,11 @@ jobs:
       - checkout
 
       - run:
+          name: Install tbls
+          command: |
+            curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
+
+      - run:
           name: Install system dependencies
           command: |
             gem install bundler -v 2.0.1
