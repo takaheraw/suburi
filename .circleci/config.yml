@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  git-shallow-clone: guitarrapc/git-shallow-clone@2.0.3
+  ganta-git: ganta/git@1.2.0
 jobs:
   build:
     parallelism: 1
