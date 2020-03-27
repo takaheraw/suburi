@@ -17,7 +17,7 @@ jobs:
 
     steps:
 
-      - git-shallow-clone/checkout
+      - checkout
 
       - run:
           name: Install system dependencies
