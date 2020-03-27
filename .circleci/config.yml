@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ganta-git: ganta/git@1.2.0
+  git-shallow-clone: guitarrapc/git-shallow-clone@2.0.3
 jobs:
   build:
     parallelism: 1
@@ -17,7 +17,7 @@ jobs:
 
     steps:
 
-      - ganta-git/shallow-clone-checkout
+      - git-shallow-clone/checkout
 
       - run:
           name: Install system dependencies
