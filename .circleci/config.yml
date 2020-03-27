@@ -6,10 +6,6 @@ jobs:
     parallelism: 1
     working_directory: ~/circleci-suburi
 
-    branches:
-      only:
-        - master
-
     docker:
       - image: circleci/ruby:2.6.3-node
       - image: circleci/mysql:8.0.12
