@@ -1,6 +1,6 @@
-orbs:
-  jq: circleci/jq@2.0.0
 version: 2.1
+orbs:
+  ganta-git: ganta/git@1.2.0
 jobs:
   build:
     parallelism: 1
@@ -17,9 +17,7 @@ jobs:
 
     steps:
 
-      - checkout
-
-      - jq/install
+      - ganta-git/shallow-clone-checkout
 
       - run:
           name: Install system dependencies
