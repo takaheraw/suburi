@@ -1,6 +1,6 @@
 orbs:
   git-shallow-clone: guitarrapc/git-shallow-clone@2.0.3
-version: 2
+version: 2.1
 jobs:
   build:
     parallelism: 1
