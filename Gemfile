@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.4'
 
 gem 'active_decorator'
 gem 'active_model_serializers'
@@ -17,7 +17,7 @@ gem 'mysql2', '>= 0.5.2'
 gem 'oauth2'
 gem 'puma', '~> 4.1'
 gem 'pundit'
-gem 'rails', '~> 6.0.0.rc2'
+gem 'rails', '~> 6.0.2.2'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
