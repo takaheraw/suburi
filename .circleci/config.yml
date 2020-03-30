@@ -1,17 +1,15 @@
-version: 2
+version: 2.1
+orbs:
+  ganta-git: ganta/git@1.2.0
 jobs:
   build:
     parallelism: 1
     working_directory: ~/circleci-suburi
 
-    branches:
-      only:
-        - master
-
     docker:
       - image: circleci/ruby:2.6.3-node
       - image: circleci/mysql:8.0.12
-        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --default-authentication-plugin=mysql_native_password
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_ROOT_PASSWORD: ''
@@ -19,7 +17,7 @@ jobs:
 
     steps:
 
-      - checkout
+      - ganta-git/shallow-clone-checkout
 
       - run:
           name: Install tbls
@@ -77,6 +75,12 @@ jobs:
             bin/rails db:create
             bin/rails db:setup
 
+      - run:
+          name: Install tbls
+          command: |
+            curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
+            tbls diff my://root@127.0.0.1:3306/suburi_development doc/schema
+
       - run: mkdir ~/rspec
 
       - run:
@@ -90,3 +94,13 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build:
+        filters:
+          branches:
+            only:
+              - master
