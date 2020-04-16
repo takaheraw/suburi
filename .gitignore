@@ -17,6 +17,7 @@
 /public/packs
 /public/packs-test
 /node_modules
+/swagger-ui
 coverage
 
 # Ignore uploaded files in development.

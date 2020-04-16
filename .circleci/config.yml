@@ -76,6 +76,11 @@ jobs:
             curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
             tbls diff my://root@127.0.0.1:3306/suburi_development doc/schema
 
+      - run:
+          name: Generate swagger ui
+          command: |
+            ruby bin/swagger.rb
+
       - run: mkdir ~/rspec
 
       - run:
