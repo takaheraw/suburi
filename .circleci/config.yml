@@ -95,6 +95,9 @@ jobs:
           path: coverage
           destination: coverage
 
+      - store_artifacts:
+          path: swagger-ui/dist
+
 workflows:
   version: 2
   build-and-test:

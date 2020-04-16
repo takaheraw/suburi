@@ -1,7 +1,6 @@
 require "fileutils"
 require "json"
 require "yaml"
-require "nokogiri"
 
 SOURCE_DIR = File.expand_path("./doc/openapi/")
 TARGET_DIR = File.expand_path("./swagger-ui/dist")
