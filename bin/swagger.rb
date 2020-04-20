@@ -2,7 +2,7 @@ require "fileutils"
 require "json"
 require "yaml"
 
-SOURCE_DIR = File.expand_path("./doc/openapi/")
+SOURCE_DIR = File.expand_path("./doc/openapi/openapi/")
 TARGET_DIR = File.expand_path("./swagger-ui/dist")
 source = File.join(SOURCE_DIR, "openapi.yaml")
 target = File.join(TARGET_DIR, "openapi.js")
