@@ -65,8 +65,8 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    airbrake (9.5.5)
-      airbrake-ruby (~> 4.8)
+    airbrake (10.0.3)
+      airbrake-ruby (~> 4.13)
     airbrake-ruby (4.14.1)
       rbtree3 (~> 0.5)
     annotate (3.1.1)
@@ -447,7 +447,7 @@ PLATFORMS
 DEPENDENCIES
   active_decorator
   active_model_serializers
-  airbrake (~> 9.1)
+  airbrake (~> 10.0)
   annotate
   better_errors
   binding_of_caller
