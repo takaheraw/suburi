@@ -12,7 +12,7 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!
 Sidekiq::Testing.inline!
-Sidekiq::Logging.logger = nil
+Sidekiq.logger = nil
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -24,13 +24,6 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include ActiveSupport::Testing::TimeHelpers
-  config.include ControllerSpecsHelper
-
-  config.before :example, type: :controller do
-    spec        = OasParser::Definition.resolve(Rails.root.join('swagger', 'v1', 'swagger.json'))
-    schema_data = spec.path_by_path(schema_path).endpoint_by_method(schema_method).response_by_code(code.to_s).raw["schema"]
-    @schema     = JsonSchema.parse!(schema_data) if schema_data
-  end
 
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation, { except: %w(countries areas) }
