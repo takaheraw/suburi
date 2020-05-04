@@ -27,7 +27,7 @@ gem 'sidekiq-failures'
 gem 'sidekiq-history'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.1'
 gem 'woothee'
 
 group :development, :test do
