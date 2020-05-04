@@ -56,10 +56,11 @@ group :development do
 end
 
 group :test do
+  gem 'committee'
+  gem 'committee-rails'
   gem 'database_cleaner'
   gem 'faker'
   gem 'rails-controller-testing'
-  gem 'rspec_junit_formatter'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'

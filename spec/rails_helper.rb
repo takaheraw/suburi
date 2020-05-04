@@ -24,6 +24,12 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include Committee::Rails::Test::Methods
+
+  open_api = OpenAPIParser.parse(YAML.load_file(Rails.root.join('doc', 'openapi', 'openapi.yaml')))
+  schema = Committee::Drivers::OpenAPI3::Driver.new.parse(open_api)
+  config.add_setting :committee_options
+  config.committee_options = { schema: schema, prefix: '/api' }
 
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation, { except: %w(countries areas) }
