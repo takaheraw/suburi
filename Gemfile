@@ -9,7 +9,7 @@ gem 'airbrake', '~> 10.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'config'
 gem 'devise'
-gem 'doorkeeper', '~> 5.1.0'
+gem 'doorkeeper', '~> 5.3.2'
 gem 'hiredis'
 gem 'jbuilder', '~> 2.5'
 gem 'lograge'
