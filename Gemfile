@@ -48,7 +48,7 @@ group :development do
   gem 'foreman'
   gem 'hirb'
   gem 'i18n_generators'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.3'
   gem 'letter_opener'
   gem 'memory_profiler'
   gem 'rails-erd'
