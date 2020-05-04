@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 gem 'active_decorator'
 gem 'active_model_serializers'
-gem 'airbrake', '~> 9.1'
+gem 'airbrake', '~> 10.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'config'
 gem 'devise'
