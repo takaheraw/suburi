@@ -23,20 +23,24 @@ executors:
       - image: redis
 
 commands:
+  restore_repo:
+    steps:
+      - restore_cache:
+          name: restore repo
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
   restore_bundle_dependencies:
     steps:
       - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
+          name: restore bundle
           keys:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
       - run:
-          name: bundler install
+          name: gem install bundler
           command: |
             gem install bundler
       - run:
-          name: Bundle Install
+          name: bundle install
           command: bundle check || bundle install
   setup_db:
     steps:
@@ -58,24 +62,14 @@ jobs:
       # source
       - ganta-git/shallow-clone-checkout
       - save_cache:
+          name: save repo
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/app
       # bundle
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          command: bundle -v
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
+      - restore_bundle_dependencies
       - save_cache:
+          name: save bundle
           key: bundle-v2-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
@@ -85,7 +79,7 @@ jobs:
             - yarn-cache-{{ checksum "yarn.lock" }}
             - yarn-cache-
       - run:
-          name: Yarn Install
+          name: yarn install
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
           key: yarn-cache-{{ checksum "yarn.lock" }}
@@ -95,6 +89,7 @@ jobs:
     executor:
       name: default
     steps:
+      - restore_repo
       - restore_bundle_dependencies
       - run:
           name: RuboCop
@@ -103,6 +98,7 @@ jobs:
     executor:
       name: default
     steps:
+      - restore_repo
       - restore_bundle_dependencies
       - run:
           name: A static analysis security
@@ -111,6 +107,7 @@ jobs:
     executor:
       name: default
     steps:
+      - restore_repo
       - restore_bundle_dependencies
       - run:
           name: Precompile assets
@@ -119,6 +116,7 @@ jobs:
     executor:
       name: default
     steps:
+      - restore_repo
       - restore_bundle_dependencies
       - setup_db
       - run:
@@ -130,6 +128,7 @@ jobs:
     executor:
       name: default
     steps:
+      - restore_repo
       - restore_bundle_dependencies
       - run:
           name: Generate swagger ui
@@ -142,6 +141,7 @@ jobs:
     executor:
       name: default
     steps:
+      - restore_repo
       - restore_bundle_dependencies
       - setup_db
       - run:
