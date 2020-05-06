@@ -62,6 +62,7 @@ group :test do
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
+  gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
   gem 'webmock'

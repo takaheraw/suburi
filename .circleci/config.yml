@@ -1,13 +1,20 @@
 version: 2.1
+
 orbs:
   ganta-git: ganta/git@1.2.0
-jobs:
-  build:
-    parallelism: 1
-    working_directory: ~/circleci-suburi
 
+executors:
+  default:
+    working_directory: ~/app
     docker:
       - image: circleci/ruby:2.6.3-node
+        environment:
+          BUNDLER_VERSION: 2.1.4
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+          DATABASE_USER: root
       - image: circleci/mysql:8.0.12
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --default-authentication-plugin=mysql_native_password
         environment:
@@ -15,31 +22,23 @@ jobs:
           MYSQL_ROOT_PASSWORD: ''
       - image: redis
 
+jobs:
+  build:
+    executor: default
     steps:
-
       - ganta-git/shallow-clone-checkout
 
       - run:
-          name: Submodule Pull
-          command: |
-            git submodule update --init --recursive
-
-      - run:
-          name: Install system dependencies
-          command: |
-            gem install bundler -v 2.0.1
-
+          command: bundle -v
       - restore_cache:
           keys:
-            - bundle-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-cache-
-
+            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
+            - bundle-v2-cache-
       - run:
           name: Bundle Install
-          command: bundle install --path vendor/bundle
-
+          command: bundle check || bundle install
       - save_cache:
-          key: bundle-cache-{{ checksum "Gemfile.lock" }}
+          key: bundle-v2-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -47,11 +46,9 @@ jobs:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
             - yarn-cache-
-
       - run:
           name: Yarn Install
           command: yarn install --cache-folder ~/.cache/yarn
-
       - save_cache:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
@@ -64,12 +61,8 @@ jobs:
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-
       - run:
           name: create test DB
-          environment:
-            RAILS_ENV: test
-            DATABASE_USER: root
           command: |
             mv config/database.ci.yml config/database.yml
             bin/rails db:create
@@ -86,29 +79,24 @@ jobs:
           command: |
             ruby bin/swagger.rb
 
-      - run: mkdir ~/rspec
-
       - run:
           name: run test
-          command: bundle exec rspec
-          when: always
+          command: |
+            mkdir /tmp/test-results
+            bundle exec rspec --profile 10 --format documentation --out /tmp/test-results/rspec.log --format progress
 
-      - store_test_results:
-          path: ~/rspec
+    - store_test_results:
+          path: /tmp/test-results
 
-      - store_artifacts:
-          path: coverage
-          destination: coverage
+    - store_artifacts:
+        path: coverage
+        destination: coverage
 
-      - store_artifacts:
-          path: swagger-ui/dist
+    - store_artifacts:
+        path: swagger-ui/dist
 
 workflows:
   version: 2
-  build-and-test:
+  build_and_test:
     jobs:
-      - build:
-        filters:
-          branches:
-            only:
-              - master
+      - build
