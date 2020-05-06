@@ -97,12 +97,12 @@ jobs:
       - run:
           name: run test
           command: |
-            mkdir test-results
+            mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=filesize)
-            bundle exec rspec $TESTFILES --profile 10 --format documentation --out test-results/rspec.log --format progress
+            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.log --format progress
 
       - store_test_results:
-          path: ~/app/test-results
+          path: /tmp/test-results
 
       - store_artifacts:
           path: coverage
