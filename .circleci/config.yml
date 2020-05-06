@@ -22,6 +22,34 @@ executors:
           MYSQL_ROOT_PASSWORD: ''
       - image: redis
 
+commands:
+  restore_bundle_dependencies:
+    steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
+            - bundle-v2-cache-
+      - run:
+          name: bundler install
+          command: |
+            gem install bundler
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+  setup_db:
+    steps:
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: create test DB
+          command: |
+            mv config/database.ci.yml config/database.yml
+            bin/rails db:create
+            bin/rails db:setup
+
 jobs:
   build:
     executor:
@@ -67,19 +95,7 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
+      - restore_bundle_dependencies
       - run:
           name: RuboCop
           command: bundle exec rubocop
@@ -87,19 +103,7 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
+      - restore_bundle_dependencies
       - run:
           name: A static analysis security
           command: bundle exec brakeman -z
@@ -107,19 +111,7 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
+      - restore_bundle_dependencies
       - run:
           name: Precompile assets
           command: bundle exec rake assets:precompile
@@ -127,28 +119,8 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-      - run:
-          name: create test DB
-          command: |
-            mv config/database.ci.yml config/database.yml
-            bin/rails db:create
-            bin/rails db:setup
+      - restore_bundle_dependencies
+      - setup_db
       - run:
           name: Install tbls
           command: |
@@ -158,19 +130,7 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
+      - restore_bundle_dependencies
       - run:
           name: Generate swagger ui
           command: |
@@ -182,28 +142,8 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-      - run:
-          name: create test DB
-          command: |
-            mv config/database.ci.yml config/database.yml
-            bin/rails db:create
-            bin/rails db:setup
+      - restore_bundle_dependencies
+      - setup_db
       - run:
           name: run test
           command: |
