@@ -74,6 +74,10 @@ jobs:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
       - run:
+          name: bundler install
+          command: |
+            gem install bundler
+      - run:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
@@ -89,6 +93,10 @@ jobs:
           keys:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
+      - run:
+          name: bundler install
+          command: |
+            gem install bundler
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -106,6 +114,10 @@ jobs:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
       - run:
+          name: bundler install
+          command: |
+            gem install bundler
+      - run:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
@@ -121,6 +133,10 @@ jobs:
           keys:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
+      - run:
+          name: bundler install
+          command: |
+            gem install bundler
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -149,6 +165,10 @@ jobs:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
       - run:
+          name: bundler install
+          command: |
+            gem install bundler
+      - run:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
@@ -168,6 +188,10 @@ jobs:
           keys:
             - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
             - bundle-v2-cache-
+      - run:
+          name: bundler install
+          command: |
+            gem install bundler
       - run:
           name: Bundle Install
           command: bundle check || bundle install
