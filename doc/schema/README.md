@@ -1,4 +1,4 @@
-# suburi_development
+# suburi db
 
 ## Tables
 

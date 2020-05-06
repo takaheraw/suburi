@@ -7,19 +7,19 @@
 
 ```sql
 CREATE TABLE `oauth_access_grants` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resource_owner_id` bigint(20) NOT NULL,
-  `application_id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `resource_owner_id` bigint NOT NULL,
+  `application_id` bigint NOT NULL,
   `token` varchar(255) NOT NULL,
-  `expires_in` int(11) NOT NULL,
+  `expires_in` int NOT NULL,
   `redirect_uri` text NOT NULL,
   `created_at` datetime NOT NULL,
   `revoked_at` datetime DEFAULT NULL,
   `scopes` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_access_grants_on_token` (`token`),
-  KEY `index_oauth_access_grants_on_application_id` (`application_id`),
   KEY `index_oauth_access_grants_on_resource_owner_id` (`resource_owner_id`),
+  KEY `index_oauth_access_grants_on_application_id` (`application_id`),
   CONSTRAINT `fk_rails_330c32d8d9` FOREIGN KEY (`resource_owner_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_rails_b4b53e07b8` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
@@ -31,11 +31,11 @@ CREATE TABLE `oauth_access_grants` (
 
 | Name | Type | Default | Nullable | Children | Parents | Comment |
 | ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| id | bigint(20) |  | false |  |  |  |
-| resource_owner_id | bigint(20) |  | false |  | [users](users.md) |  |
-| application_id | bigint(20) |  | false |  | [oauth_applications](oauth_applications.md) |  |
+| id | bigint |  | false |  |  |  |
+| resource_owner_id | bigint |  | false |  | [users](users.md) |  |
+| application_id | bigint |  | false |  | [oauth_applications](oauth_applications.md) |  |
 | token | varchar(255) |  | false |  |  |  |
-| expires_in | int(11) |  | false |  |  |  |
+| expires_in | int |  | false |  |  |  |
 | redirect_uri | text |  | false |  |  |  |
 | created_at | datetime |  | false |  |  |  |
 | revoked_at | datetime |  | true |  |  |  |

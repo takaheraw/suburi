@@ -1,3 +1,0 @@
-[submodule "doc/openapi"]
-	path = doc/openapi
-	url = https://github.com/takaheraw/documentation.git
