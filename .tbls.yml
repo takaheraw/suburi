@@ -1,2 +1,6 @@
 name: suburi db
 docPath: doc/schema
+format:
+  adjust: true
+er:
+  format: svg

@@ -31,42 +31,42 @@ CREATE TABLE `oauth_access_tokens` (
 
 ## Columns
 
-| Name | Type | Default | Nullable | Children | Parents | Comment |
-| ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| id | bigint |  | false |  |  |  |
-| resource_owner_id | bigint |  | true |  | [users](users.md) |  |
-| application_id | bigint |  | false |  | [oauth_applications](oauth_applications.md) |  |
-| token | varchar(255) |  | false |  |  |  |
-| refresh_token | varchar(255) |  | true |  |  |  |
-| expires_in | int |  | true |  |  |  |
-| revoked_at | datetime |  | true |  |  |  |
-| created_at | datetime |  | false |  |  |  |
-| scopes | varchar(255) |  | true |  |  |  |
-| previous_refresh_token | varchar(255) |  | false |  |  |  |
+| Name                   | Type         | Default | Nullable | Children | Parents                                     | Comment |
+| ---------------------- | ------------ | ------- | -------- | -------- | ------------------------------------------- | ------- |
+| id                     | bigint       |         | false    |          |                                             |         |
+| resource_owner_id      | bigint       |         | true     |          | [users](users.md)                           |         |
+| application_id         | bigint       |         | false    |          | [oauth_applications](oauth_applications.md) |         |
+| token                  | varchar(255) |         | false    |          |                                             |         |
+| refresh_token          | varchar(255) |         | true     |          |                                             |         |
+| expires_in             | int          |         | true     |          |                                             |         |
+| revoked_at             | datetime     |         | true     |          |                                             |         |
+| created_at             | datetime     |         | false    |          |                                             |         |
+| scopes                 | varchar(255) |         | true     |          |                                             |         |
+| previous_refresh_token | varchar(255) |         | false    |          |                                             |         |
 
 ## Constraints
 
-| Name | Type | Definition |
-| ---- | ---- | ---------- |
-| fk_rails_732cb83ab7 | FOREIGN KEY | FOREIGN KEY (application_id) REFERENCES oauth_applications (id) |
-| fk_rails_ee63f25419 | FOREIGN KEY | FOREIGN KEY (resource_owner_id) REFERENCES users (id) |
-| index_oauth_access_tokens_on_refresh_token | UNIQUE | UNIQUE KEY index_oauth_access_tokens_on_refresh_token (refresh_token) |
-| index_oauth_access_tokens_on_token | UNIQUE | UNIQUE KEY index_oauth_access_tokens_on_token (token) |
-| PRIMARY | PRIMARY KEY | PRIMARY KEY (id) |
+| Name                                       | Type        | Definition                                                            |
+| ------------------------------------------ | ----------- | --------------------------------------------------------------------- |
+| fk_rails_732cb83ab7                        | FOREIGN KEY | FOREIGN KEY (application_id) REFERENCES oauth_applications (id)       |
+| fk_rails_ee63f25419                        | FOREIGN KEY | FOREIGN KEY (resource_owner_id) REFERENCES users (id)                 |
+| index_oauth_access_tokens_on_refresh_token | UNIQUE      | UNIQUE KEY index_oauth_access_tokens_on_refresh_token (refresh_token) |
+| index_oauth_access_tokens_on_token         | UNIQUE      | UNIQUE KEY index_oauth_access_tokens_on_token (token)                 |
+| PRIMARY                                    | PRIMARY KEY | PRIMARY KEY (id)                                                      |
 
 ## Indexes
 
-| Name | Definition |
-| ---- | ---------- |
-| index_oauth_access_tokens_on_application_id | KEY index_oauth_access_tokens_on_application_id (application_id) USING BTREE |
+| Name                                           | Definition                                                                         |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------- |
+| index_oauth_access_tokens_on_application_id    | KEY index_oauth_access_tokens_on_application_id (application_id) USING BTREE       |
 | index_oauth_access_tokens_on_resource_owner_id | KEY index_oauth_access_tokens_on_resource_owner_id (resource_owner_id) USING BTREE |
-| PRIMARY | PRIMARY KEY (id) USING BTREE |
-| index_oauth_access_tokens_on_refresh_token | UNIQUE KEY index_oauth_access_tokens_on_refresh_token (refresh_token) USING BTREE |
-| index_oauth_access_tokens_on_token | UNIQUE KEY index_oauth_access_tokens_on_token (token) USING BTREE |
+| PRIMARY                                        | PRIMARY KEY (id) USING BTREE                                                       |
+| index_oauth_access_tokens_on_refresh_token     | UNIQUE KEY index_oauth_access_tokens_on_refresh_token (refresh_token) USING BTREE  |
+| index_oauth_access_tokens_on_token             | UNIQUE KEY index_oauth_access_tokens_on_token (token) USING BTREE                  |
 
 ## Relations
 
-![er](oauth_access_tokens.png)
+![er](oauth_access_tokens.svg)
 
 ---
 

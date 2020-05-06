@@ -19,28 +19,28 @@ CREATE TABLE `ar_internal_metadata` (
 
 ## Columns
 
-| Name | Type | Default | Nullable | Children | Parents | Comment |
-| ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| key | varchar(255) |  | false |  |  |  |
-| value | varchar(255) |  | true |  |  |  |
-| created_at | datetime(6) |  | false |  |  |  |
-| updated_at | datetime(6) |  | false |  |  |  |
+| Name       | Type         | Default | Nullable | Children | Parents | Comment |
+| ---------- | ------------ | ------- | -------- | -------- | ------- | ------- |
+| key        | varchar(255) |         | false    |          |         |         |
+| value      | varchar(255) |         | true     |          |         |         |
+| created_at | datetime(6)  |         | false    |          |         |         |
+| updated_at | datetime(6)  |         | false    |          |         |         |
 
 ## Constraints
 
-| Name | Type | Definition |
-| ---- | ---- | ---------- |
+| Name    | Type        | Definition        |
+| ------- | ----------- | ----------------- |
 | PRIMARY | PRIMARY KEY | PRIMARY KEY (key) |
 
 ## Indexes
 
-| Name | Definition |
-| ---- | ---------- |
+| Name    | Definition                    |
+| ------- | ----------------------------- |
 | PRIMARY | PRIMARY KEY (key) USING BTREE |
 
 ## Relations
 
-![er](ar_internal_metadata.png)
+![er](ar_internal_metadata.svg)
 
 ---
 

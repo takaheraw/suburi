@@ -29,39 +29,39 @@ CREATE TABLE `oauth_access_grants` (
 
 ## Columns
 
-| Name | Type | Default | Nullable | Children | Parents | Comment |
-| ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| id | bigint |  | false |  |  |  |
-| resource_owner_id | bigint |  | false |  | [users](users.md) |  |
-| application_id | bigint |  | false |  | [oauth_applications](oauth_applications.md) |  |
-| token | varchar(255) |  | false |  |  |  |
-| expires_in | int |  | false |  |  |  |
-| redirect_uri | text |  | false |  |  |  |
-| created_at | datetime |  | false |  |  |  |
-| revoked_at | datetime |  | true |  |  |  |
-| scopes | varchar(255) |  | true |  |  |  |
+| Name              | Type         | Default | Nullable | Children | Parents                                     | Comment |
+| ----------------- | ------------ | ------- | -------- | -------- | ------------------------------------------- | ------- |
+| id                | bigint       |         | false    |          |                                             |         |
+| resource_owner_id | bigint       |         | false    |          | [users](users.md)                           |         |
+| application_id    | bigint       |         | false    |          | [oauth_applications](oauth_applications.md) |         |
+| token             | varchar(255) |         | false    |          |                                             |         |
+| expires_in        | int          |         | false    |          |                                             |         |
+| redirect_uri      | text         |         | false    |          |                                             |         |
+| created_at        | datetime     |         | false    |          |                                             |         |
+| revoked_at        | datetime     |         | true     |          |                                             |         |
+| scopes            | varchar(255) |         | true     |          |                                             |         |
 
 ## Constraints
 
-| Name | Type | Definition |
-| ---- | ---- | ---------- |
-| fk_rails_330c32d8d9 | FOREIGN KEY | FOREIGN KEY (resource_owner_id) REFERENCES users (id) |
-| fk_rails_b4b53e07b8 | FOREIGN KEY | FOREIGN KEY (application_id) REFERENCES oauth_applications (id) |
-| index_oauth_access_grants_on_token | UNIQUE | UNIQUE KEY index_oauth_access_grants_on_token (token) |
-| PRIMARY | PRIMARY KEY | PRIMARY KEY (id) |
+| Name                               | Type        | Definition                                                      |
+| ---------------------------------- | ----------- | --------------------------------------------------------------- |
+| fk_rails_330c32d8d9                | FOREIGN KEY | FOREIGN KEY (resource_owner_id) REFERENCES users (id)           |
+| fk_rails_b4b53e07b8                | FOREIGN KEY | FOREIGN KEY (application_id) REFERENCES oauth_applications (id) |
+| index_oauth_access_grants_on_token | UNIQUE      | UNIQUE KEY index_oauth_access_grants_on_token (token)           |
+| PRIMARY                            | PRIMARY KEY | PRIMARY KEY (id)                                                |
 
 ## Indexes
 
-| Name | Definition |
-| ---- | ---------- |
-| index_oauth_access_grants_on_application_id | KEY index_oauth_access_grants_on_application_id (application_id) USING BTREE |
+| Name                                           | Definition                                                                         |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------- |
+| index_oauth_access_grants_on_application_id    | KEY index_oauth_access_grants_on_application_id (application_id) USING BTREE       |
 | index_oauth_access_grants_on_resource_owner_id | KEY index_oauth_access_grants_on_resource_owner_id (resource_owner_id) USING BTREE |
-| PRIMARY | PRIMARY KEY (id) USING BTREE |
-| index_oauth_access_grants_on_token | UNIQUE KEY index_oauth_access_grants_on_token (token) USING BTREE |
+| PRIMARY                                        | PRIMARY KEY (id) USING BTREE                                                       |
+| index_oauth_access_grants_on_token             | UNIQUE KEY index_oauth_access_grants_on_token (token) USING BTREE                  |
 
 ## Relations
 
-![er](oauth_access_grants.png)
+![er](oauth_access_grants.svg)
 
 ---
 

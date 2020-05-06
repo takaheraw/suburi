@@ -16,25 +16,25 @@ CREATE TABLE `schema_migrations` (
 
 ## Columns
 
-| Name | Type | Default | Nullable | Children | Parents | Comment |
-| ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| version | varchar(255) |  | false |  |  |  |
+| Name    | Type         | Default | Nullable | Children | Parents | Comment |
+| ------- | ------------ | ------- | -------- | -------- | ------- | ------- |
+| version | varchar(255) |         | false    |          |         |         |
 
 ## Constraints
 
-| Name | Type | Definition |
-| ---- | ---- | ---------- |
+| Name    | Type        | Definition            |
+| ------- | ----------- | --------------------- |
 | PRIMARY | PRIMARY KEY | PRIMARY KEY (version) |
 
 ## Indexes
 
-| Name | Definition |
-| ---- | ---------- |
+| Name    | Definition                        |
+| ------- | --------------------------------- |
 | PRIMARY | PRIMARY KEY (version) USING BTREE |
 
 ## Relations
 
-![er](schema_migrations.png)
+![er](schema_migrations.svg)
 
 ---
 
