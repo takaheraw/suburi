@@ -7,7 +7,7 @@
 
 ```sql
 CREATE TABLE `oauth_applications` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `uid` varchar(255) NOT NULL,
   `secret` varchar(255) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `oauth_applications` (
 
 | Name         | Type         | Default | Nullable | Children                                                                                    | Parents | Comment |
 | ------------ | ------------ | ------- | -------- | ------------------------------------------------------------------------------------------- | ------- | ------- |
-| id           | bigint       |         | false    | [oauth_access_grants](oauth_access_grants.md) [oauth_access_tokens](oauth_access_tokens.md) |         |         |
+| id           | bigint(20)   |         | false    | [oauth_access_grants](oauth_access_grants.md) [oauth_access_tokens](oauth_access_tokens.md) |         |         |
 | name         | varchar(255) |         | false    |                                                                                             |         |         |
 | uid          | varchar(255) |         | false    |                                                                                             |         |         |
 | secret       | varchar(255) |         | false    |                                                                                             |         |         |

@@ -7,12 +7,12 @@
 
 ```sql
 CREATE TABLE `oauth_access_tokens` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `resource_owner_id` bigint DEFAULT NULL,
-  `application_id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `resource_owner_id` bigint(20) DEFAULT NULL,
+  `application_id` bigint(20) NOT NULL,
   `token` varchar(255) NOT NULL,
   `refresh_token` varchar(255) DEFAULT NULL,
-  `expires_in` int DEFAULT NULL,
+  `expires_in` int(11) DEFAULT NULL,
   `revoked_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `scopes` varchar(255) DEFAULT NULL,
@@ -33,12 +33,12 @@ CREATE TABLE `oauth_access_tokens` (
 
 | Name                   | Type         | Default | Nullable | Children | Parents                                     | Comment |
 | ---------------------- | ------------ | ------- | -------- | -------- | ------------------------------------------- | ------- |
-| id                     | bigint       |         | false    |          |                                             |         |
-| resource_owner_id      | bigint       |         | true     |          | [users](users.md)                           |         |
-| application_id         | bigint       |         | false    |          | [oauth_applications](oauth_applications.md) |         |
+| id                     | bigint(20)   |         | false    |          |                                             |         |
+| resource_owner_id      | bigint(20)   |         | true     |          | [users](users.md)                           |         |
+| application_id         | bigint(20)   |         | false    |          | [oauth_applications](oauth_applications.md) |         |
 | token                  | varchar(255) |         | false    |          |                                             |         |
 | refresh_token          | varchar(255) |         | true     |          |                                             |         |
-| expires_in             | int          |         | true     |          |                                             |         |
+| expires_in             | int(11)      |         | true     |          |                                             |         |
 | revoked_at             | datetime     |         | true     |          |                                             |         |
 | created_at             | datetime     |         | false    |          |                                             |         |
 | scopes                 | varchar(255) |         | true     |          |                                             |         |
