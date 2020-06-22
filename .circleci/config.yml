@@ -122,7 +122,7 @@ jobs:
       - run:
           name: Install tbls
           command: |
-            curl -sL https://git.io/use-tbls > use-tbls.tmp && . ./use-tbls.tmp && rm ./use-tbls.tmp
+            curl -sL https://git.io/use-tbls > use-tbls.tmp && TBLS_VERSION=v1.37.5 . ./use-tbls.tmp && rm ./use-tbls.tmp
             echo `tbls version`
             tbls diff my://root@127.0.0.1:3306/suburi_test
   swagger:
