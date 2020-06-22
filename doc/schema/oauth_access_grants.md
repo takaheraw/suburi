@@ -7,11 +7,11 @@
 
 ```sql
 CREATE TABLE `oauth_access_grants` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resource_owner_id` bigint(20) NOT NULL,
-  `application_id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `resource_owner_id` bigint NOT NULL,
+  `application_id` bigint NOT NULL,
   `token` varchar(255) NOT NULL,
-  `expires_in` int(11) NOT NULL,
+  `expires_in` int NOT NULL,
   `redirect_uri` text NOT NULL,
   `created_at` datetime NOT NULL,
   `revoked_at` datetime DEFAULT NULL,
@@ -31,11 +31,11 @@ CREATE TABLE `oauth_access_grants` (
 
 | Name              | Type         | Default | Nullable | Children | Parents                                     | Comment |
 | ----------------- | ------------ | ------- | -------- | -------- | ------------------------------------------- | ------- |
-| id                | bigint(20)   |         | false    |          |                                             |         |
-| resource_owner_id | bigint(20)   |         | false    |          | [users](users.md)                           |         |
-| application_id    | bigint(20)   |         | false    |          | [oauth_applications](oauth_applications.md) |         |
+| id                | bigint       |         | false    |          |                                             |         |
+| resource_owner_id | bigint       |         | false    |          | [users](users.md)                           |         |
+| application_id    | bigint       |         | false    |          | [oauth_applications](oauth_applications.md) |         |
 | token             | varchar(255) |         | false    |          |                                             |         |
-| expires_in        | int(11)      |         | false    |          |                                             |         |
+| expires_in        | int          |         | false    |          |                                             |         |
 | redirect_uri      | text         |         | false    |          |                                             |         |
 | created_at        | datetime     |         | false    |          |                                             |         |
 | revoked_at        | datetime     |         | true     |          |                                             |         |

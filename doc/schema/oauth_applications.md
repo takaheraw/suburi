@@ -7,7 +7,7 @@
 
 ```sql
 CREATE TABLE `oauth_applications` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `uid` varchar(255) NOT NULL,
   `secret` varchar(255) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE `oauth_applications` (
   `updated_at` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=[Redacted by tbls] DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
 
 </details>
@@ -28,7 +28,7 @@ CREATE TABLE `oauth_applications` (
 
 | Name         | Type         | Default | Nullable | Children                                                                                    | Parents | Comment |
 | ------------ | ------------ | ------- | -------- | ------------------------------------------------------------------------------------------- | ------- | ------- |
-| id           | bigint(20)   |         | false    | [oauth_access_grants](oauth_access_grants.md) [oauth_access_tokens](oauth_access_tokens.md) |         |         |
+| id           | bigint       |         | false    | [oauth_access_grants](oauth_access_grants.md) [oauth_access_tokens](oauth_access_tokens.md) |         |         |
 | name         | varchar(255) |         | false    |                                                                                             |         |         |
 | uid          | varchar(255) |         | false    |                                                                                             |         |         |
 | secret       | varchar(255) |         | false    |                                                                                             |         |         |
