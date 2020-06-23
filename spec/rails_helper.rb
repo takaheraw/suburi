@@ -67,3 +67,17 @@ end
 def json_str_to_hash(str)
   JSON.parse(str, symbolize_names: true)
 end
+
+def create_spec_table(name, &block)
+  before(:all) do
+    m = ActiveRecord::Migration.new
+    m.verbose = false
+    m.create_table name, &block
+  end
+
+  after(:all) do
+    m = ActiveRecord::Migration.new
+    m.verbose = false
+    m.drop_table name
+  end
+end
