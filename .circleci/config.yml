@@ -130,6 +130,7 @@ jobs:
           command: |
             git config user.email "username@mydomain.com"
             git config user.name "My Name"
+            echo `git status`
             git add doc/schema
             git commit -m "AUTO COMMIT tbls"
             git push origin ${CIRCLE_BRANCH}
