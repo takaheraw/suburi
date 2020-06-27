@@ -8,7 +8,7 @@
 ```sql
 CREATE TABLE `oauth_access_grants` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resource_owner_id` bigint(20) NOT NULL,
+  `resource_owner_id` int(11) NOT NULL,
   `application_id` bigint(20) NOT NULL,
   `token` varchar(255) NOT NULL,
   `expires_in` int(11) NOT NULL,
