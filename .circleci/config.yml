@@ -128,6 +128,8 @@ jobs:
       - run:
           name: tbls auto commit
           command: |
+            curl -sL https://git.io/use-tbls > use-tbls.tmp && TBLS_VERSION=v1.39.0 . ./use-tbls.tmp && rm ./use-tbls.tmp
+            tbls doc my://root@127.0.0.1:3306/suburi_test -f
             git config user.email "username@mydomain.com"
             git config user.name "My Name"
             echo `git status`
