@@ -125,6 +125,13 @@ jobs:
             curl -sL https://git.io/use-tbls > use-tbls.tmp && TBLS_VERSION=v1.39.0 . ./use-tbls.tmp && rm ./use-tbls.tmp
             echo `tbls version`
             tbls diff my://root@127.0.0.1:3306/suburi_test
+      - run:
+          name: tbls auto commit
+          command: |
+            git add doc/schema
+            git commit -m "AUTO COMMIT tbls"
+            git push origin ${CIRCLE_BRANCH}
+          when: on_fail
   swagger:
     executor:
       name: default
@@ -162,18 +169,18 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - rubocop:
-          requires:
-            - build
-      - brakeman:
-          requires:
-            - build
       - tbls:
           requires:
             - build
-      - swagger:
-          requires:
-            - build
-      - test:
-          requires:
-            - build
+#      - rubocop:
+#          requires:
+#            - build
+#      - brakeman:
+#          requires:
+#            - build
+#      - swagger:
+#          requires:
+#            - build
+#      - test:
+#          requires:
+#            - build
