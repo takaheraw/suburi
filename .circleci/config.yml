@@ -128,10 +128,10 @@ jobs:
       - run:
           name: tbls auto commit
           command: |
-            git add doc/schema
-            git commit -m "AUTO COMMIT tbls"
             git config user.email "username@mydomain.com"
             git config user.name "My Name"
+            git add doc/schema
+            git commit -m "AUTO COMMIT tbls"
             git push origin ${CIRCLE_BRANCH}
           when: on_fail
   swagger:
