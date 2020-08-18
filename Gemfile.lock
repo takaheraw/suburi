@@ -106,7 +106,7 @@ GEM
       activesupport
       committee (>= 3.0.0)
       railties
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     config (2.2.1)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
@@ -186,7 +186,7 @@ GEM
     factory_bot_rails (5.2.0)
       factory_bot (~> 5.2.0)
       railties (>= 4.2.0)
-    faker (2.11.0)
+    faker (2.13.0)
       i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
