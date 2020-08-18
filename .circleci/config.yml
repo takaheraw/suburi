@@ -172,21 +172,21 @@ workflows:
       - rubocop:
           requires:
             - build
-      - brakeman:
-          requires:
-            - build
-      - tbls:
-          requires:
-            - build
-      - swagger:
-          requires:
-            - build
-      - test:
-          requires:
-            - build
       - pr-release:
           requires:
             - build
           filters:
             branches:
               only: develop
+#      - brakeman:
+#          requires:
+#            - build
+#      - tbls:
+#          requires:
+#            - build
+#      - swagger:
+#          requires:
+#            - build
+#      - test:
+#          requires:
+#            - build
