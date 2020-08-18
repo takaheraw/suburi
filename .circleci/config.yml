@@ -169,15 +169,15 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - rubocop:
-          requires:
-            - build
       - pr-release:
           requires:
             - build
           filters:
             branches:
               only: develop
+#      - rubocop:
+#          requires:
+#            - build
 #      - brakeman:
 #          requires:
 #            - build
