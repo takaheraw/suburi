@@ -175,9 +175,9 @@ workflows:
           filters:
             branches:
               only: develop
-#      - rubocop:
-#          requires:
-#            - build
+      - rubocop:
+          requires:
+            - build
 #      - brakeman:
 #          requires:
 #            - build
