@@ -160,7 +160,7 @@ jobs:
     executor:
       name: default
     steps:
-      - restore_repo
+      - checkout
       - restore_bundle_dependencies
       - run: bundle exec git-pr-release
 
