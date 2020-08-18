@@ -33,8 +33,8 @@ commands:
       - restore_cache:
           name: restore bundle
           keys:
-            - bundle-v2-cache-{{ checksum "Gemfile.lock" }}
-            - bundle-v2-cache-
+            - bundle-v3-cache-{{ checksum "Gemfile.lock" }}
+            - bundle-v3-cache-
       - run:
           name: gem install bundler
           command: |
@@ -70,7 +70,7 @@ jobs:
       - restore_bundle_dependencies
       - save_cache:
           name: save bundle
-          key: bundle-v2-cache-{{ checksum "Gemfile.lock" }}
+          key: bundle-v3-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       # yarn
@@ -162,7 +162,7 @@ jobs:
     steps:
       - restore_repo
       - restore_bundle_dependencies
-      - run: git-pr-release
+      - run: bundle exec git-pr-release
 
 workflows:
   version: 2
