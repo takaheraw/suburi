@@ -156,6 +156,13 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
+  pr-release:
+    executor:
+      name: default
+    steps:
+      - restore_repo
+      - restore_bundle_dependencies
+      - run: git-pr-release
 
 workflows:
   version: 2
@@ -177,3 +184,7 @@ workflows:
       - test:
           requires:
             - build
+      - pr-release:
+          filters:
+            branches:
+              only: develop

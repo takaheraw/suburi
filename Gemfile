@@ -36,6 +36,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'git-pr-release'
 end
 
 group :development do
