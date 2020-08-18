@@ -185,6 +185,8 @@ workflows:
           requires:
             - build
       - pr-release:
+          requires:
+            - build
           filters:
             branches:
               only: develop
