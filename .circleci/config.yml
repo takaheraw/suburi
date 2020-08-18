@@ -178,15 +178,15 @@ workflows:
       - rubocop:
           requires:
             - build
-#      - brakeman:
-#          requires:
-#            - build
-#      - tbls:
-#          requires:
-#            - build
-#      - swagger:
-#          requires:
-#            - build
-#      - test:
-#          requires:
-#            - build
+      - brakeman:
+          requires:
+            - build
+      - tbls:
+          requires:
+            - build
+      - swagger:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
