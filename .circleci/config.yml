@@ -7,7 +7,7 @@ executors:
   default:
     working_directory: ~/app
     docker:
-      - image: circleci/ruby:2.6.3-node
+      - image: cimg/ruby:2.6.3-node
         environment:
           BUNDLER_VERSION: 2.1.4
           BUNDLE_JOBS: 3
@@ -15,7 +15,7 @@ executors:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           DATABASE_USER: root
-      - image: circleci/mysql:8.0.12
+      - image: circleci/mysql:8.0.12-ram
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
@@ -138,7 +138,7 @@ jobs:
       - store_artifacts:
           path: swagger-ui/dist
   test:
-    parallelism: 3
+    parallelism: 2
     executor:
       name: default
     steps:
@@ -149,7 +149,7 @@ jobs:
           name: run test
           command: |
             mkdir /tmp/test-results
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=filesize)
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timing)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - store_test_results:
           path: /tmp/test-results
