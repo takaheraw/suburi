@@ -153,6 +153,27 @@ jobs:
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - store_test_results:
           path: /tmp/test-results
+      - run:
+          name: upload coverage
+          command: |
+            mkdir coverage_results
+            cp coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
+      - persist_to_workspace:
+          root: ~/app
+          paths:
+            - coverage_results
+  coverage:
+    executor:
+      name: default
+    steps:
+      - restore_repo
+      - restore_bundle_dependencies
+      - attach_workspace:
+          at: ~/app
+      - run:
+          name: merge coverage
+          command: |
+            bundle exec rake simplecov:merge_results
       - store_artifacts:
           path: coverage
           destination: coverage
@@ -169,24 +190,27 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - pr-release:
-          requires:
-            - build
-          filters:
-            branches:
-              only: develop
-      - rubocop:
-          requires:
-            - build
-      - brakeman:
-          requires:
-            - build
-      - tbls:
-          requires:
-            - build
-      - swagger:
-          requires:
-            - build
       - test:
           requires:
             - build
+      - coverage:
+          requires:
+            - test
+#      - pr-release:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: develop
+#      - rubocop:
+#          requires:
+#            - build
+#      - brakeman:
+#          requires:
+#            - build
+#      - tbls:
+#          requires:
+#            - build
+#      - swagger:
+#          requires:
+#            - build
