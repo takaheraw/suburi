@@ -190,10 +190,9 @@ jobs:
       name: default
     steps:
       - slack/notify:
-          channel: general
-          color: '#42e2f4'
-          message: This is a custom message notification
-          webhook: https://hooks.slack.com/services/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
+          color: "#42e2f4"
+          message: "This is a custom message notification"
+          webhook: $SLACK_WEBHOOK
 
 workflows:
   version: 2
