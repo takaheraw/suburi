@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   ganta-git: ganta/git@1.2.0
+  slack: circleci/slack@3.4.2
 
 executors:
   default:
@@ -196,6 +197,11 @@ workflows:
       - coverage:
           requires:
             - test
+      - slack/notify:
+          channel: general
+          color: '#42e2f4'
+          message: This is a custom message notification
+          webhook: https://hooks.slack.com/services/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
 #      - pr-release:
 #          requires:
 #            - build
