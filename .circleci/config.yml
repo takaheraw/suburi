@@ -191,7 +191,7 @@ jobs:
     steps:
       - slack/notify:
           color: "#42e2f4"
-          message: "This is a custom message notification"
+          message: "$CI $CIRCLE_BRANCH $CIRCLE_BUILD_NUM $CIRCLE_BUILD_URL $CIRCLE_JOB ${CIRCLE_REPOSITORY_URL}\n$CIRCLE_SHA1"
           webhook: $SLACK_WEBHOOK
 
 workflows:
