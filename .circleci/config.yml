@@ -189,9 +189,21 @@ jobs:
     executor:
       name: default
     steps:
+      - attach_workspace:
+          at: ~/app
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+      - run:
+          name: Get artifacts
+          command: |
+            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
+            -H "Accept: application/json" \
+            -u "$CIRCLE_API_TOKEN:")
+            echo "export ARTIFACT_RESPONSE=$artifacts" >> $BASH_ENV
       - slack/notify:
           color: "#42e2f4"
-          message: "$CI $CIRCLE_BRANCH $CIRCLE_BUILD_NUM $CIRCLE_BUILD_URL $CIRCLE_JOB ${CIRCLE_REPOSITORY_URL}\n$CIRCLE_SHA1"
+          message: "$ARTIFACT_RESPONSE"
           webhook: $SLACK_WEBHOOK
 
 workflows:
@@ -205,7 +217,9 @@ workflows:
       - coverage:
           requires:
             - test
-      - notify
+      - notify:
+          requires:
+            - test
 #      - pr-release:
 #          requires:
 #            - build
