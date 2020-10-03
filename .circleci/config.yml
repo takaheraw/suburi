@@ -206,7 +206,7 @@ workflows:
       - coverage:
           requires:
             - test
-      - notify:
+      - notify
 #      - pr-release:
 #          requires:
 #            - build
