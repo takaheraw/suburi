@@ -185,6 +185,15 @@ jobs:
       - checkout
       - restore_bundle_dependencies
       - run: bundle exec git-pr-release
+  notify:
+    executor:
+      name: default
+    steps:
+      - slack/notify:
+          channel: general
+          color: '#42e2f4'
+          message: This is a custom message notification
+          webhook: https://hooks.slack.com/services/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
 
 workflows:
   version: 2
@@ -197,11 +206,7 @@ workflows:
       - coverage:
           requires:
             - test
-      - slack/notify:
-          channel: general
-          color: '#42e2f4'
-          message: This is a custom message notification
-          webhook: https://hooks.slack.com/services/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
+      - notify:
 #      - pr-release:
 #          requires:
 #            - build
