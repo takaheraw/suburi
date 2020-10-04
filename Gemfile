@@ -37,6 +37,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'git-pr-release'
+  gem 'rubycritic'
 end
 
 group :development do

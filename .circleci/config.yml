@@ -168,6 +168,8 @@ jobs:
     executor:
       name: default
     steps:
+      - jq/install
+      - checkout
       - restore_repo
       - restore_bundle_dependencies
       - attach_workspace:
@@ -179,7 +181,19 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
-      - run: echo "export ARTIFACT_BUILD_NUM=$CIRCLE_BUILD_NUM" >> $BASH_ENV
+      - run:
+          name: Get artifacts
+          command: |
+            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
+            -H "Content-Type: application/json" \
+            -H "Circle-Token: $CIRCLE_CI_TOKEN")
+            coverage_url=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
+            echo $coverage_url
+            echo "export COVERAGE_URL=$coverage_url" >> $BASH_ENV
+      - slack/notify:
+          color: "#42e2f4"
+          message: $COVERAGE_URL
+          webhook: $SLACK_WEBHOOK
   pr-release:
     executor:
       name: default
@@ -187,28 +201,6 @@ jobs:
       - checkout
       - restore_bundle_dependencies
       - run: bundle exec git-pr-release
-  notify_coverage:
-    executor:
-      name: default
-    steps:
-      - echo ${ARTIFACT_BUILD_NUM}
-      - jq/install
-      - checkout
-      - restore_repo
-      - restore_bundle_dependencies
-      - run:
-          name: Get artifacts
-          command: |
-            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$ARTIFACT_BUILD_NUM/artifacts" \
-            -H "Content-Type: application/json" \
-            -H "Circle-Token: $CIRCLE_CI_TOKEN")
-            artifact=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
-            echo $artifact
-            echo "export ARTIFACT_RESPONSE=$artifact" >> $BASH_ENV
-      - slack/notify:
-          color: "#42e2f4"
-          message: $ARTIFACT_RESPONSE
-          webhook: $SLACK_WEBHOOK
 
 workflows:
   version: 2
@@ -221,16 +213,6 @@ workflows:
       - coverage:
           requires:
             - test
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 3 * * *"
-          filters:
-            branches:
-              only:
-                - develop
-    jobs:
-      - notify_coverage
 #      - pr-release:
 #          requires:
 #            - build
