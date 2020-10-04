@@ -183,14 +183,15 @@ jobs:
       - run:
           name: Get artifacts
           command: |
-            echo jq --version
+            echo $(jq --version)
+            echo $CIRCLE_BUILD_NUM
             artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
-            -H "Content-Type:application/json" \
+            -H "Content-Type: application/json" \
             -H "Circle-Token: $CIRCLE_API_TOKEN")
             echo $artifacts
             artifact=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
             echo $artifact
-            echo "export ARTIFACT_RESPONSE=$artifact" >> $BASH_ENV
+            echo "export ARTIFACT_RESPONSE=$artifacts" >> $BASH_ENV
       - slack/notify:
           color: "#42e2f4"
           message: "$ARTIFACT_RESPONSE"
