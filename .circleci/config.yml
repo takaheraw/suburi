@@ -185,10 +185,9 @@ jobs:
           command: |
             echo $(jq --version)
             echo $CIRCLE_BUILD_NUM
-            echo $CIRCLE_API_TOKEN
             artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/902/artifacts" \
             -H "Content-Type: application/json" \
-            -H "Circle-Token: ${CIRCLE_API_TOKEN}")
+            -H "Circle-Token: 099aa9370541e9279284f1a98788f1680e7546d6")
             echo "response = $artifacts"
             artifact=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
             echo $artifact
