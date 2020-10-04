@@ -193,22 +193,19 @@ jobs:
             artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
             -H "Content-Type: application/json" \
             -H "Circle-Token: $CIRCLE_CI_TOKEN")
-            echo ${artifacts}
             coverage_url=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
             rubycritic_url=$(echo $artifacts | jq '.items[].url | select(endswith("overview.html"))') 
-            echo ${coverage_url}
-            echo ${rubycritic_url}
             echo "export COVERAGE_URL=$coverage_url" >> $BASH_ENV
             echo "export RUBYCRITIC_URL=$rubycritic_url" >> $BASH_ENV
       - slack/notify:
           color: "#42e2f4"
-          message: ":rubycritic: $CIRCLE_PR_USERNAME : $CIRCLE_BRANCH\n$COVERAGE_URL\n$RUBYCRITIC_URL"
+          message: "$COVERAGE_URL\n$RUBYCRITIC_URL"
           webhook: $SLACK_WEBHOOK
           include_job_number_field: false
           include_project_field: false
           include_visit_job_action: false
           image_url: "https://i.gyazo.com/5c473c428da17776b5afe1a2f865eb67.png"
-          title: ":rubycritic: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH ($CIRCLE_PR_USERNAME)"
+          title: ":rubycritic: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH ($CIRCLE_USERNAME)"
           title_link: "$CIRCLE_BUILD_URL"
   pr-release:
     executor:
