@@ -170,7 +170,6 @@ jobs:
     steps:
       - jq/install
       - checkout
-      - restore_repo
       - restore_bundle_dependencies
       - attach_workspace:
           at: ~/app
