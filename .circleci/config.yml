@@ -140,7 +140,7 @@ jobs:
       - store_artifacts:
           path: swagger-ui/dist
   test:
-    parallelism: 2
+    parallelism: 1
     executor:
       name: default
     steps:
@@ -182,17 +182,28 @@ jobs:
           path: coverage
           destination: coverage
       - run:
-          name: Get artifacts
+          name: rubycritic
+          command: |
+            bundle exec rubycritic app
+      - store_artifacts:
+          path: tmp/rubycritic
+          destination: rubycritic
+      - run:
+          name: Get coverage_url, rubycritic_url
           command: |
             artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
             -H "Content-Type: application/json" \
             -H "Circle-Token: $CIRCLE_CI_TOKEN")
+            echo ${artifacts}
             coverage_url=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
-            echo $coverage_url
+            rubycritic_url=$(echo $artifacts | jq '.items[].url | select(endswith("overview.html"))') 
+            echo ${coverage_url}
+            echo ${rubycritic_url}
             echo "export COVERAGE_URL=$coverage_url" >> $BASH_ENV
+            echo "export RUBYCRITIC_URL=$rubycritic_url" >> $BASH_ENV
       - slack/notify:
           color: "#42e2f4"
-          message: $COVERAGE_URL
+          message: "$COVERAGE_URL\n$RUBYCRITIC_URL"
           webhook: $SLACK_WEBHOOK
   pr-release:
     executor:
