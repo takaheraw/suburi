@@ -234,9 +234,7 @@ workflows:
       - schedule:
           cron: "0 1 * * *"
     jobs:
-      - notify:
-          requires:
-            - test
+      - notify
 #      - pr-release:
 #          requires:
 #            - build
