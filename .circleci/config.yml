@@ -168,7 +168,6 @@ jobs:
     executor:
       name: default
     steps:
-      - jq/install
       - restore_repo
       - restore_bundle_dependencies
       - attach_workspace:
@@ -180,21 +179,7 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
-      - run:
-          name: Get artifacts
-          command: |
-            echo $(jq --version)
-            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
-            -H "Content-Type: application/json" \
-            -H "Circle-Token: 099aa9370541e9279284f1a98788f1680e7546d6")
-            echo "response = $artifacts"
-            artifact=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
-            echo $artifact
-            echo "export ARTIFACT_RESPONSE=$artifact" >> $BASH_ENV
-      - slack/notify:
-          color: "#42e2f4"
-          message: "$ARTIFACT_RESPONSE"
-          webhook: $SLACK_WEBHOOK
+      - run: echo "export ARTIFACT_BUILD_NUM=$CIRCLE_BUILD_NUM" >> $BASH_ENV
   pr-release:
     executor:
       name: default
@@ -202,22 +187,24 @@ jobs:
       - checkout
       - restore_bundle_dependencies
       - run: bundle exec git-pr-release
-  notify:
+  notify_coverage:
     executor:
       name: default
     steps:
-      - attach_workspace:
-          at: ~/app
-      - store_artifacts:
-          path: coverage
-          destination: coverage
+      - echo ${ARTIFACT_BUILD_NUM}
+      - jq/install
+      - checkout
+      - restore_repo
+      - restore_bundle_dependencies
       - run:
           name: Get artifacts
           command: |
-            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
-            -H "Accept: application/json" \
-            -u "$CIRCLE_API_TOKEN:")
-            echo "export ARTIFACT_RESPONSE=$artifacts" >> $BASH_ENV
+            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$ARTIFACT_BUILD_NUM/artifacts" \
+            -H "Content-Type: application/json" \
+            -H "Circle-Token: $CIRCLE_CI_TOKEN")
+            artifact=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
+            echo $artifact
+            echo "export ARTIFACT_RESPONSE=$artifact" >> $BASH_ENV
       - slack/notify:
           color: "#42e2f4"
           message: $ARTIFACT_RESPONSE
@@ -237,13 +224,13 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "0 1 * * *"
+          cron: "0 3 * * *"
           filters:
             branches:
               only:
                 - develop
     jobs:
-      - notify
+      - notify_coverage
 #      - pr-release:
 #          requires:
 #            - build
