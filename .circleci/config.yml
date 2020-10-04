@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ganta-git: ganta/git@1.2.0
   slack: circleci/slack@3.4.2
+  jq: circleci/jq@2.2.0
 
 executors:
   default:
@@ -167,6 +168,7 @@ jobs:
     executor:
       name: default
     steps:
+      - jq/install
       - restore_repo
       - restore_bundle_dependencies
       - attach_workspace:
@@ -178,6 +180,16 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
+      - run:
+          name: Get artifacts
+          command: |
+            artifacts = curl -H GET 'https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts' -H 'Content-Type:application/json' -H 'Circle-Token: $CIRCLE_API_TOKEN' | jq '.items[].url | select(endswith("index.html"))'
+            echo $artifacts
+            echo "export ARTIFACT_RESPONSE=$artifacts" >> $BASH_ENV
+      - slack/notify:
+          color: "#42e2f4"
+          message: "$ARTIFACT_RESPONSE"
+          webhook: $SLACK_WEBHOOK
   pr-release:
     executor:
       name: default
@@ -203,7 +215,7 @@ jobs:
             echo "export ARTIFACT_RESPONSE=$artifacts" >> $BASH_ENV
       - slack/notify:
           color: "#42e2f4"
-          message: "$ARTIFACT_RESPONSE"
+          message: $ARTIFACT_RESPONSE
           webhook: $SLACK_WEBHOOK
 
 workflows:
@@ -217,6 +229,11 @@ workflows:
       - coverage:
           requires:
             - test
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
+    jobs:
       - notify:
           requires:
             - test
