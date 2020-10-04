@@ -233,6 +233,10 @@ workflows:
     triggers:
       - schedule:
           cron: "0 1 * * *"
+          filters:
+            branches:
+              only:
+                - develop
     jobs:
       - notify
 #      - pr-release:
