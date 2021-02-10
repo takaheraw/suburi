@@ -2,7 +2,7 @@
 addReviewers: true
 addAssignees: author
 
-numberOfReviewers: 1
+numberOfReviewers: 2
 
 useReviewGroups: true
 
