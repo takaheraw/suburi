@@ -22,6 +22,8 @@ reviewGroups:
     - takaheraw
   frontend:
     - takaheraw
+  sre:
+    - takaheraw
 
 # Set to true to add assignees from different groups to pull requests
 useAssigneeGroups: false
