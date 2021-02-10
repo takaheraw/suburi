@@ -1,10 +1,10 @@
 name: "Auto Assign PR Reviewers"
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
     branches:
-      - "dependabot/**"
+      - 'dependabot/**'
 
 jobs:
   # Automatically assigns reviewers and owner
