@@ -2,11 +2,8 @@ name: "Auto Assign PR Reviewers"
 
 on:
   pull_request:
-    branches:
-      - 'dependabot/**'
 
 jobs:
-  # Automatically assigns reviewers and owner
   add-reviews:
     runs-on: ubuntu-latest
     steps:
