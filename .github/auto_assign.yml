@@ -2,5 +2,12 @@
 addReviewers: true
 addAssignees: author
 
-reviewers:
-  - takaheraw
+numberOfReviewers: 1
+
+useReviewGroups: true
+
+reviewGroups:
+  groupA:
+    - takaheraw
+
+useAssigneeGroups: false
