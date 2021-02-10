@@ -15,6 +15,7 @@ numberOfReviewers: 1
 # A list of reviewers to be added to pull requests (GitHub user name)
 reviewers:
   - takaheraw
+  - takaheraw
 
 # Set to true to add reviewers from different groups to pull requests
 useReviewGroups: false
