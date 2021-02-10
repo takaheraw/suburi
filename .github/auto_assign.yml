@@ -12,16 +12,19 @@ numberOfReviewers: 1
 # Set to 0 to add all of the assignees.
 # Uses numberOfReviewers if unset.
 # numberOfAssignees: 2
+# A list of reviewers to be added to pull requests (GitHub user name)
+reviewers:
+  - takaheraw
 
 # Set to true to add reviewers from different groups to pull requests
-useReviewGroups: true
+useReviewGroups: false
 
 # A list of reviewers, split into different groups, to be added to pull requests (GitHub user name)
-reviewGroups:
-  backend:
-    - takaheraw
-  frontend:
-    - takaheraw
+#reviewGroups:
+#  backend:
+#    - takaheraw
+#  frontend:
+#    - takaheraw
 
 # Set to true to add assignees from different groups to pull requests
 useAssigneeGroups: false
