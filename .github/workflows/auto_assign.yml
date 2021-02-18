@@ -2,6 +2,8 @@ name: "Auto Assign PR Reviewers"
 
 on:
   pull_request:
+    branches:
+      - 'dependabot/**'
 
 jobs:
   add-reviews:
