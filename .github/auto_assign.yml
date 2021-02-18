@@ -10,5 +10,6 @@ reviewGroups:
   groupA:
     - takaheraw
     - takaheraw
+    - takaheraw
 
 useAssigneeGroups: false
