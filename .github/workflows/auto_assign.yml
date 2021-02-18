@@ -2,11 +2,10 @@ name: "Auto Assign PR Reviewers"
 
 on:
   pull_request:
-    branches:
-      - 'develop'
 
 jobs:
   add-reviews:
+    if: startsWith(github.event.pull_request.head.ref, 'dependabot/bundler/')
     runs-on: ubuntu-latest
     steps:
       - uses: kentaro-m/auto-assign-action@v1.1.2

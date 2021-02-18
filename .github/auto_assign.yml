@@ -11,11 +11,3 @@ reviewGroups:
     - takaheraw
 
 useAssigneeGroups: false
-
-filterLabels:
-  # Run
-  include:
-    - dependencies
-  # Not run
-  exclude:
-    - javascript
