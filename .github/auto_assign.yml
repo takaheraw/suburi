@@ -9,5 +9,6 @@ useReviewGroups: true
 reviewGroups:
   groupA:
     - takaheraw
+    - takaheraw
 
 useAssigneeGroups: false
