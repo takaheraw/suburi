@@ -3,7 +3,7 @@ name: "Auto Assign PR Reviewers"
 on:
   pull_request:
     branches:
-      - 'dependabot/hoge'
+      - 'develop'
 
 jobs:
   add-reviews:
