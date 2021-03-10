@@ -75,6 +75,7 @@ jobs:
           key: bundle-v3-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - run: node -v && npm -v
       # yarn
       - restore_cache:
           keys:
@@ -220,12 +221,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - coverage:
-          requires:
-            - test
+#      - test:
+#          requires:
+#            - build
+#      - coverage:
+#          requires:
+#            - test
 #      - pr-release:
 #          requires:
 #            - build
