@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.6'
 
 gem 'active_decorator'
 gem 'active_model_serializers'
@@ -36,6 +36,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'git-pr-release'
+  gem 'rubycritic'
 end
 
 group :development do
