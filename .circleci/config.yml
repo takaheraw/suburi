@@ -75,12 +75,6 @@ jobs:
           key: bundle-v3-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run:
-          name: "install node"
-          command: |
-            curl -sSL "https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v10.15.3-linux-x64/bin/node
-            curl -sSL https://www.npmjs.com/install.sh -o install.sh && chmod +x install.sh && sudo npm_install=6.13.0 ./install.sh
-      - run: node -v && npm -v
       # yarn
       - restore_cache:
           keys:
@@ -226,9 +220,9 @@ workflows:
   build_and_test:
     jobs:
       - build
-#      - test:
-#          requires:
-#            - build
+      - test:
+          requires:
+            - build
 #      - coverage:
 #          requires:
 #            - test
