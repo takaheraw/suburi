@@ -79,8 +79,8 @@ jobs:
           name: "install node"
           command: |
             curl -sSL "https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v10.15.3-linux-x64/bin/node
-            curl https://www.npmjs.com/install.sh | sudo bash
-      - run: npm install -g npm@6.13.0
+            curl -sSL https://www.npmjs.com/install.sh
+            npm_install=6.13.0 ./install.sh
       - run: node -v && npm -v
       # yarn
       - restore_cache:
