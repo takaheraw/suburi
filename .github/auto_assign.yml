@@ -1,0 +1,13 @@
+# Set to true to add reviewers to pull requests
+addReviewers: true
+addAssignees: author
+
+numberOfReviewers: 1
+
+useReviewGroups: true
+
+reviewGroups:
+  groupA:
+    - takaheraw
+
+useAssigneeGroups: false
