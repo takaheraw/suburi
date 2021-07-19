@@ -219,19 +219,17 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - pr-release:
+          filters:
+            branches:
+              only: test/1
+#      - build
+#      - test:
+#          requires:
+#            - build
 #      - coverage:
 #          requires:
 #            - test
-#      - pr-release:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: develop
 #      - rubocop:
 #          requires:
 #            - build
