@@ -222,7 +222,7 @@ workflows:
       - pr-release:
           filters:
             branches:
-              only: develop
+              only: test
 #      - build
 #      - test:
 #          requires:
