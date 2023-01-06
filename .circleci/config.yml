@@ -193,8 +193,8 @@ jobs:
             artifacts=$(curl -X GET "https://circleci.com/api/v2/project/gh/takaheraw/suburi/$CIRCLE_BUILD_NUM/artifacts" \
             -H "Content-Type: application/json" \
             -H "Circle-Token: $CIRCLE_CI_TOKEN")
-            coverage_url=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))') 
-            rubycritic_url=$(echo $artifacts | jq '.items[].url | select(endswith("overview.html"))') 
+            coverage_url=$(echo $artifacts | jq '.items[].url | select(endswith("index.html"))')
+            rubycritic_url=$(echo $artifacts | jq '.items[].url | select(endswith("overview.html"))')
             echo "export COVERAGE_URL=$coverage_url" >> $BASH_ENV
             echo "export RUBYCRITIC_URL=$rubycritic_url" >> $BASH_ENV
       - slack/notify:
@@ -223,7 +223,7 @@ workflows:
           filters:
             branches:
               only: develop
-#      - build
+      - build
 #      - test:
 #          requires:
 #            - build
